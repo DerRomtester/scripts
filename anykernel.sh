@@ -8,7 +8,7 @@ DATE_START=$(date +"%s")
 cd ../kernels/one_plus_one
 make clean && make mrproper
 
-VER=147
+VER=149
 # release
 export KBUILD_BUILD_VERSION=$VER
 export KBUILD_BUILD_USER=DerRomtester
