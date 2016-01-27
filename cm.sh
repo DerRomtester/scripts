@@ -3,13 +3,13 @@ echo "Cleaning old files"
 rm -f ../ramdisk/opo-AnyKernel2/dtb
 rm -f ../ramdisk/opo-AnyKernel2/zImage
 rm -f ../output/Tyr*.zip
-echo "Making Oneplus one 3.10 CAF kernel"
+echo "Making Oneplus one CM13 kernel"
 DATE_START=$(date +"%s")
 
-cd ../kernels/android_kernel_oneplus_bacon-3.10
+cd ../kernels/one_plus_one
 make clean && make mrproper
 
-VER=999
+VER=8
 export KBUILD_BUILD_VERSION=$VER
 export KBUILD_BUILD_USER=DerRomtester
 export KBUILD_BUILD_HOST=Kernel
@@ -25,9 +25,9 @@ echo
 DIFF=$(($DATE_END - $DATE_START))
 echo "Build completed in $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
 cd ../../scripts
-../ramdisk/opo-AnyKernel2/tools/dtbToolCM -2 -o ../ramdisk/opo-AnyKernel2/dtb -s 2048 -p ../kernels/android_kernel_oneplus_bacon-3.10/scripts/dtc/ ../kernels/android_kernel_oneplus_bacon-3.10/arch/arm/boot/dts/
-cp ../kernels/android_kernel_oneplus_bacon-3.10/arch/arm/boot/zImage ../ramdisk/opo-AnyKernel2/zImage
+../ramdisk/opo-AnyKernel2/tools/dtbToolCM -2 -o ../ramdisk/opo-AnyKernel2/dtb -s 2048 -p ../kernels/one_plus_one/scripts/dtc/ ../kernels/one_plus_one/arch/arm/boot/
+cp ../kernels/one_plus_one/arch/arm/boot/zImage ../ramdisk/opo-AnyKernel2/zImage
 cd ../ramdisk/opo-AnyKernel2/
-zipfile="TyrV$VER-CAF-3~10.zip"
+zipfile="TyrV$VER-CM13.zip"
 zip -r -9 $zipfile *
 mv Tyr*.zip ../../output/
