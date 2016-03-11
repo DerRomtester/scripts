@@ -9,13 +9,13 @@ DATE_START=$(date +"%s")
 cd ../kernels/android_kernel_oneplus_msm8974
 make clean && make mrproper
 
-VER=1
+VER=5
 export KBUILD_BUILD_VERSION=$VER
 export KBUILD_BUILD_USER=DerRomtester
 export KBUILD_BUILD_HOST=Kernel
 export ARCH=arm
 export SUBARCH=arm
-export CROSS_COMPILE=/home/stefan/build/toolchains/arm-eabi-4.9/bin/arm-eabi-
+export CROSS_COMPILE=/home/stefan/build/toolchains/linaro-arm-eabi-5.2/bin/arm-eabi-
 make bacon_defconfig
 make -j8
 echo "End of compiling kernel!"
@@ -30,4 +30,4 @@ cp ../kernels/android_kernel_oneplus_msm8974/arch/arm/boot/zImage ../ramdisk/opo
 cd ../ramdisk/opo-AnyKernel2/
 zipfile="Private_r$VER-CAF.zip"
 zip -r -9 $zipfile *
-mv Private*.zip ../../output/
+mv *.zip ../../output/
