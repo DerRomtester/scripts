@@ -34,9 +34,9 @@ bold="\e[1m"
 invert="\e[7m"
 
 # kernel version
-KERNEL="Private-CAF-"
-VERSION="2"
-RELEASE="${KERNEL}00${VERSION}"
+KERNEL="Private"
+VERSION="3"
+RELEASE="${KERNEL}.00${VERSION}"
 
 # local variables
 CURRENT_DATE=`date +%Y%m%d`
@@ -48,14 +48,14 @@ THREAD="-j 8"
 ZIMAGE="zImage"
 ZIMAGE_LOCATION="arch/arm/boot"
 DTB="dtb"
-DEFCONFIG="bacon_defconfig"
+DEFCONFIG="msm8974_find7op_defconfig"
 TOOLCHAIN_CC="bin/arm-eabi-"
 CCACHE=ccache
 
 # path locations
 SOURCE_DIR="/home/stefan/build"
 KERNEL_DIR="kernels/android_kernel_oneplus_msm8974"
-ANYKERNEL_DIR="ramdisk/opo-Ramdisk"
+ANYKERNEL_DIR="ramdisk/opo-AnyKernel2-omni"
 OUTPUT_DIR="output"
 TOOLCHAIN_DIR="toolchains/DespairFactor-arm-eabi-4.9"
 
@@ -142,8 +142,8 @@ function clean_all {
     echo -e "${bold}${blue}Clean ==============================================================${restore}"
     rm -rf zImage
     rm -rf ${DTB}
-    cd ${OUTPUT_DIR}
-    rm -f *.zip
+    git reset --hard
+    git clean -f -d
     cd ${SOURCE_DIR}/${KERNEL_DIR}
     make clean
     make mrproper
